@@ -178,4 +178,16 @@ public class AdminServiceImpl implements AdminService
         return erLoginMapper.insert(login);
     }
 
+    /* (非 Javadoc)
+     * 
+     * @param glbm
+     * @return
+     * @see com.service.AdminService#getDetailInfo(java.lang.String)
+     */
+    @Override
+    public UserExtend getDetailInfo(String glbm)
+    {
+        return userMapper.selectBygl(glbm);
+    }
+
 }

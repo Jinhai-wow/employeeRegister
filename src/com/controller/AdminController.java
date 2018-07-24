@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -163,6 +164,28 @@ public class AdminController
             users = adminService.searchUserByName(key);
         }
         return users;
+    }
+    
+    
+    /**
+     * @Description: TODO(根据员工关联编号获取详细信息)
+     * @param glbm
+     * @param session
+     * @return
+     * @creator Jinhai
+     * @since  v1.0
+     */
+    @RequestMapping(value="/{glbm}/detail")
+    @ResponseBody
+    public UserExtend detail(@PathVariable("glbm") String glbm,HttpSession session){
+        if (glbm != null || glbm != "")
+        {
+            return adminService.getDetailInfo(glbm);
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /**

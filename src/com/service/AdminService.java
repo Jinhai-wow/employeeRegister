@@ -84,4 +84,13 @@ public interface AdminService
      */
     List<ErYgxx> searchUserByName(String key);
 
+    /**
+     * @Description: TODO(根据员工关联编号获取详细信息)
+     * @param glbm
+     * @return
+     * @creator Jinhai
+     * @since  从哪个版本开始有这个方法
+     */
+    UserExtend getDetailInfo(String glbm);
+
 }

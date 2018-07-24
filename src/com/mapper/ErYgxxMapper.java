@@ -2,7 +2,10 @@ package com.mapper;
 
 import com.po.ErYgxx;
 import com.po.ErYgxxExample;
+import com.po.UserExtend;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ErYgxxMapper {
@@ -79,4 +82,13 @@ public interface ErYgxxMapper {
      * @since  v1.0
      */
     List<ErYgxx> selectByName(String key);
+
+    /**
+     * @Description: TODO(根据员工关联编号获取详细信息)
+     * @param glbm
+     * @return
+     * @creator Jinhai
+     * @since  v1.0
+     */
+    UserExtend selectBygl(String glbm);
 }

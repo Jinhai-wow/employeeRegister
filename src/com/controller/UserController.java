@@ -68,6 +68,7 @@ public class UserController
             //普通员工登录
             if (password.equals(erLogin2.getPassword()))
             {
+          
             session.setAttribute("login", erLogin2);
               if(erLogin2.getQxjb() == 2){
                user=userService.selectMsg(erLogin2.getGlbm());
@@ -76,11 +77,15 @@ public class UserController
                 mv.setViewName("employeeInfo");//新员工登陆获取信息
                 
             	}
-            	else{
+            	else if(erLogin2.getQxjb() == 1){
             	    user = userService.selectUserByGlbm(erLogin2.getGlbm());
             	    session.setAttribute("user", user);
             	    mv.setViewName("table");//管理员登录
-            		//超级管理员登陆
+            		
+            	}
+            //超级管理员登陆
+            	else{
+            		 mv.setViewName("admin");
             	}
             }
             else
@@ -125,5 +130,24 @@ public class UserController
             return null;
         }
     }
+    
+        /**  
+        * @Title: updatePwd  
+        * @Description: TODO(用户更新密码)
+        * @creator: liuzheng
+        * @param @param username
+        * @param @param password
+        * @param @param password1
+        * @param @param session
+        * @param @param resp
+        * @return void
+        * @throws  
+        */  
+        
+    @RequestMapping(value = "/updatePwd")
+    public void updatePwd( String username,String password,String password1, HttpSession session,HttpServletResponse resp){
+    	
+    }
+    
 
 }

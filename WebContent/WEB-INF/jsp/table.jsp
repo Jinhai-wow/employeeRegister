@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,18 +99,29 @@
 		<div class="row-fluid">
 			<!-- start: Main Menu -->
 			<div id="sidebar-left" class="span2">
-				
+				<!--  
 				<div class="row-fluid actions">
 													
 					<input type="text" class="search span12" placeholder="..." />
 				
 				</div>	
-				
+				-->
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
+					<!-- 根据登陆权限不同展示不同的链接 -->
+					 <c:if test="${login.qxjb==0}">
+					 <li><a href="${pageContext.request.contextPath }/admin/pageInfo?type=three"><i class="icon-edit"></i><span class="hidden-tablet"> 超级管理员</span></a></li>
+					 <li><a href="${pageContext.request.contextPath }/admin/pageInfo?type=one"><i class="icon-edit"></i><span class="hidden-tablet"> 人力资源管理中心</span></a></li>
+					 </c:if>
+					  <c:if test="${login.qxjb==1}">
+					  <li><a href="${pageContext.request.contextPath }/admin/pageInfo?type=one"><i class="icon-edit"></i><span class="hidden-tablet"> 人力资源管理中心</span></a></li>
+					  <li><a href="${pageContext.request.contextPath }/admin/pageInfo?type=two"><i class="icon-align-justify"></i><span class="hidden-tablet"> 个人管理中心</span></a></li>
+					  </c:if>
+					  <!-- 
 						<li><a href="table.html"><i class="icon-edit"></i><span class="hidden-tablet"> 超级管理员</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/admin/pageInfo?type=one"><i class="icon-edit"></i><span class="hidden-tablet"> 人力资源管理中心</span></a></li>
 						<li><a href="${pageContext.request.contextPath }/admin/pageInfo?type=two"><i class="icon-align-justify"></i><span class="hidden-tablet"> 个人管理中心</span></a></li>
+					   -->
 					</ul>
 				</div>
 			</div>

@@ -94,6 +94,7 @@
     from er_ygdz
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <!-- 通过关联编码查找详细信息 -->
   <select id="selectByGlbm" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

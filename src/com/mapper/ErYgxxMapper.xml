@@ -137,6 +137,13 @@
     from er_ygxx
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <!-- 通过关联编码查找详细信息 -->
+  <select id="selectByGlbm" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from er_ygxx
+    where glbm = #{glbm,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from er_ygxx
     where id = #{id,jdbcType=INTEGER}

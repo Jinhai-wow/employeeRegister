@@ -188,6 +188,7 @@ public class AdminServiceImpl implements AdminService
     public UserExtend getDetailInfo(String glbm)
     {
         return userMapper.selectBygl(glbm);
+    	//return new UserExtend(userMapper.selectByGlbm(glbm),erYgdzMapper.selectByGlbm(glbm));
     }
 
 }

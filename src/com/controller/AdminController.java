@@ -236,6 +236,10 @@ public class AdminController
             }
             page = "forward:/WEB-INF/jsp/main2.jsp";
         }
+        //超级管理员界面
+        else if("three".equals(type)){
+        	 page = "forward:/WEB-INF/jsp/admin.jsp";
+        }
         return page;
     }
 }

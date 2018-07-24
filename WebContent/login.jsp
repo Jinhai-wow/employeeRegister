@@ -3,6 +3,36 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+	<script type="text/javascript">
+        var isShow=true;
+        function change(){
+            var v=document.getElementById("password");
+            if (isShow) {
+                v.type="text";
+                isShow=false;
+                bkj.style.display = "none"; 
+                kj.style.display = "block";
+                 
+            }else{
+                v.type="password";
+                isShow=true;
+                kj.style.display = "none"; 
+                bkj.style.display = "block";
+            }
+        }
+   
+    	function xg(){
+        	if(xgmm.style.display == "block")
+        	{
+        		xgmm.style.display = "none"; 
+        		login.style.display = "block";
+        	}else{
+        		xgmm.style.display = "block";
+        		login.style.display = "none";
+        	}
+        }
+    </script>
+	
 	<!-- start: Meta -->
 	<meta charset="utf-8" />
 	<title>GeoStar-新员工管理系统</title>
@@ -21,6 +51,7 @@
 	<link href="css/style.min.css" rel="stylesheet" />
 	<link href="css/style-responsive.min.css" rel="stylesheet" />
 	<link href="css/retina.css" rel="stylesheet" />
+	<link href="css/login.css" rel="stylesheet" />
 	<!-- end: CSS -->
 	
 
@@ -45,41 +76,52 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 
 <body>
-	
 		<div class="container-fluid-full" style="background-image:url(img/bj1.jpg);opacity: 0.85;background-repeat:no-repeat;background-size: cover;">
 		<div class="row-fluid">
 					
 			<div class="row-fluid">
-				<div class="login-box">
+				<div class="login-box"  id="login" style="display: block;">
 					<h2>登陆账户</h2>
 					<form class="form-horizontal" action="${pageContext.request.contextPath}/savedata"method="post" name="form1">
 						<fieldset>
 						     <!-- 判断登陆类型 -->
 							<input id ="types"type="hidden" name="type" value="login">
-							<input class="input-large span12" name="username" id="username" type="text" placeholder="type username" />
-
-							<input class="input-large span12" name="password" id="password" type="password" placeholder="type password" />
-
+							<input class="input-large span12" name="username" id="username" type="text" placeholder="请输入用户名！" />				
+							<input class="input-large span12" name="password" id="password" type="password" placeholder="请输入密码！" />       <i class="icon-eye-open" id="kj" style="display: none;" onclick="change()"><label>隐藏密码</label></i>
+								<i class="icon-eye-close" id="bkj" onclick="change()"><label>显示密码</label></i>
 							<div class="clearfix"></div>
-							
-							<label class="remember" for="remember"><input type="checkbox" id="remember" />记住密码</label>
-							
 							<div class="clearfix"></div>
 							<button type="button" class="btn btn-primary span12"onclick="formSubmit()">登 陆</button>
+							<button type="button" class="btn btn-primary span12" style="background-color: #17b343;" onclick="location='${pageContext.request.contextPath }/savedata?type=regist'">新员工入口</button>
+							<button type="button" class="btn btn-primary span12" onclick="xg()">修改密码</button>
 						</fieldset>	
-					</form><!-- 
-					<p>第一次进入系统的新员工请点击下方入口。</p>	 -->
-					<form class="form-horizontal" action="${pageContext.request.contextPath }/savedata" method="post">
-					 <!-- 判断登陆类型 -->
-					<input id ="types"type="hidden" name="type" value="regist">
-					<button type="submit" class="btn btn-primary span12" style="background-color: #a3a0a0;">新员工入口</button>
-				    </form>
-					<hr />
-					<h3>忘记密码？</h3>
-					<p>
-						<!-- No problem, <a href="#">click here</a> to get a new password. -->
-						请询问人力资源处，谢谢。
-					</p>	
+					</form>	
+				</div>
+				<div class="row-fluid">
+				<div class="login-box" id="xgmm" style="display: none;">
+					<h2>修改密码</h2>
+					<form class="form-horizontal" >
+						<fieldset>
+							
+							<input class="input-large span12" name="username" id="username_1" type="text" placeholder="请输入原用户名！" />
+
+							<input class="input-large span12" name="password" id="password_1" type="password" placeholder="请输入原密码！" />
+
+							<input class="input_login  span12" name="password" id="password_2" type="password" placeholder="请输入新密码！" />
+
+							<!-- <i class="icon-eye-open" id="kj" style="display: none;" onclick="change()"></i>
+							<i class="icon-eye-close" id="bkj" onclick="change()"></i> -->
+
+							
+							<div class="clearfix"></div>
+							
+							<button type="submit" class="btn btn-primary span12" >保 存</button>
+
+							
+							<button type="button" class="btn btn-primary span12" style="background-color: #17b343;" onclick="xg()">返 回</button>
+
+						</fieldset>	
+					</form>
 				</div>
 			</div><!--/row-->
 			
@@ -153,6 +195,33 @@ function formSubmit() {
         }
       }
         });
+}
+var isShow=true;
+function change(){
+    var v=document.getElementById("password");
+    if (isShow) {
+        v.type="text";
+        isShow=false;
+        bkj.style.display = "none"; 
+        kj.style.display = "block";
+         
+    }else{
+        v.type="password";
+        isShow=true;
+        kj.style.display = "none"; 
+        bkj.style.display = "block";
+    }
+}
+
+function xg(){
+	if(xgmm.style.display == "block")
+	{
+		xgmm.style.display = "none"; 
+		login.style.display = "block";
+	}else{
+		xgmm.style.display = "block";
+		login.style.display = "none";
+	}
 }
 //转换数据格式
 function Format(val) {

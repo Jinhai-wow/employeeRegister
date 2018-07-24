@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.ErYgdzMapper" >
+  <resultMap id="BaseResultMap" type="com.po.ErYgdz" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="glbm" property="glbm" jdbcType="VARCHAR" />
+    <result column="txdz" property="txdz" jdbcType="VARCHAR" />
+    <result column="yb" property="yb" jdbcType="VARCHAR" />
+    <result column="xzdz" property="xzdz" jdbcType="VARCHAR" />
+    <result column="zzdh" property="zzdh" jdbcType="VARCHAR" />
+    <result column="yddh" property="yddh" jdbcType="VARCHAR" />
+    <result column="jjlxrdh" property="jjlxrdh" jdbcType="VARCHAR" />
+    <result column="grdzyj" property="grdzyj" jdbcType="VARCHAR" />
+    <result column="gsdzyj" property="gsdzyj" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, glbm, txdz, yb, xzdz, zzdh, yddh, jjlxrdh, grdzyj, gsdzyj
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.po.ErYgdzExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from er_ygdz
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from er_ygdz
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByGlbm" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from er_ygdz
+    where glbm = #{glbm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_ygdz
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.po.ErYgdzExample" >
+    delete from er_ygdz
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.po.ErYgdz" >
+    insert into er_ygdz (id, glbm, txdz, 
+      yb, xzdz, zzdh, yddh, 
+      jjlxrdh, grdzyj, gsdzyj
+      )
+    values (#{id,jdbcType=INTEGER}, #{glbm,jdbcType=VARCHAR}, #{txdz,jdbcType=VARCHAR}, 
+      #{yb,jdbcType=VARCHAR}, #{xzdz,jdbcType=VARCHAR}, #{zzdh,jdbcType=VARCHAR}, #{yddh,jdbcType=VARCHAR}, 
+      #{jjlxrdh,jdbcType=VARCHAR}, #{grdzyj,jdbcType=VARCHAR}, #{gsdzyj,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.po.ErYgdz" >
+    insert into er_ygdz
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="glbm != null" >
+        glbm,
+      </if>
+      <if test="txdz != null" >
+        txdz,
+      </if>
+      <if test="yb != null" >
+        yb,
+      </if>
+      <if test="xzdz != null" >
+        xzdz,
+      </if>
+      <if test="zzdh != null" >
+        zzdh,
+      </if>
+      <if test="yddh != null" >
+        yddh,
+      </if>
+      <if test="jjlxrdh != null" >
+        jjlxrdh,
+      </if>
+      <if test="grdzyj != null" >
+        grdzyj,
+      </if>
+      <if test="gsdzyj != null" >
+        gsdzyj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="glbm != null" >
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="txdz != null" >
+        #{txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="yb != null" >
+        #{yb,jdbcType=VARCHAR},
+      </if>
+      <if test="xzdz != null" >
+        #{xzdz,jdbcType=VARCHAR},
+      </if>
+      <if test="zzdh != null" >
+        #{zzdh,jdbcType=VARCHAR},
+      </if>
+      <if test="yddh != null" >
+        #{yddh,jdbcType=VARCHAR},
+      </if>
+      <if test="jjlxrdh != null" >
+        #{jjlxrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="grdzyj != null" >
+        #{grdzyj,jdbcType=VARCHAR},
+      </if>
+      <if test="gsdzyj != null" >
+        #{gsdzyj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.po.ErYgdzExample" resultType="java.lang.Integer" >
+    select count(*) from er_ygdz
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update er_ygdz
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.glbm != null" >
+        glbm = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txdz != null" >
+        txdz = #{record.txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yb != null" >
+        yb = #{record.yb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xzdz != null" >
+        xzdz = #{record.xzdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zzdh != null" >
+        zzdh = #{record.zzdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yddh != null" >
+        yddh = #{record.yddh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jjlxrdh != null" >
+        jjlxrdh = #{record.jjlxrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grdzyj != null" >
+        grdzyj = #{record.grdzyj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gsdzyj != null" >
+        gsdzyj = #{record.gsdzyj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update er_ygdz
+    set id = #{record.id,jdbcType=INTEGER},
+      glbm = #{record.glbm,jdbcType=VARCHAR},
+      txdz = #{record.txdz,jdbcType=VARCHAR},
+      yb = #{record.yb,jdbcType=VARCHAR},
+      xzdz = #{record.xzdz,jdbcType=VARCHAR},
+      zzdh = #{record.zzdh,jdbcType=VARCHAR},
+      yddh = #{record.yddh,jdbcType=VARCHAR},
+      jjlxrdh = #{record.jjlxrdh,jdbcType=VARCHAR},
+      grdzyj = #{record.grdzyj,jdbcType=VARCHAR},
+      gsdzyj = #{record.gsdzyj,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.po.ErYgdz" >
+    update er_ygdz
+    <set >
+      <if test="glbm != null" >
+        glbm = #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="txdz != null" >
+        txdz = #{txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="yb != null" >
+        yb = #{yb,jdbcType=VARCHAR},
+      </if>
+      <if test="xzdz != null" >
+        xzdz = #{xzdz,jdbcType=VARCHAR},
+      </if>
+      <if test="zzdh != null" >
+        zzdh = #{zzdh,jdbcType=VARCHAR},
+      </if>
+      <if test="yddh != null" >
+        yddh = #{yddh,jdbcType=VARCHAR},
+      </if>
+      <if test="jjlxrdh != null" >
+        jjlxrdh = #{jjlxrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="grdzyj != null" >
+        grdzyj = #{grdzyj,jdbcType=VARCHAR},
+      </if>
+      <if test="gsdzyj != null" >
+        gsdzyj = #{gsdzyj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.po.ErYgdz" >
+    update er_ygdz
+    set glbm = #{glbm,jdbcType=VARCHAR},
+      txdz = #{txdz,jdbcType=VARCHAR},
+      yb = #{yb,jdbcType=VARCHAR},
+      xzdz = #{xzdz,jdbcType=VARCHAR},
+      zzdh = #{zzdh,jdbcType=VARCHAR},
+      yddh = #{yddh,jdbcType=VARCHAR},
+      jjlxrdh = #{jjlxrdh,jdbcType=VARCHAR},
+      grdzyj = #{grdzyj,jdbcType=VARCHAR},
+      gsdzyj = #{gsdzyj,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

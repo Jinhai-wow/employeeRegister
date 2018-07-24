@@ -187,6 +187,35 @@ public class AdminController
             return null;
         }
     }
+    
+    /**
+     * @Description: TODO(根据员工关联编号删除)
+     * @param glbm
+     * @param session
+     * @return
+     * @creator Jinhai
+     * @since  v1.0
+     */
+    @RequestMapping(value="/{glbm}/delete")
+    @ResponseBody
+    public String delete(@PathVariable("glbm") String glbm,HttpSession session){
+        if (glbm != null || glbm != "")
+        {
+            int rs = adminService.deleteUpdate(glbm);
+            if (rs > 0)
+            {
+                return "success";
+            }
+            else
+            {
+                return "error";
+            }
+        }
+        else
+        {
+            return "error";
+        }
+    }
 
     /**
      * @Description: TODO(用户详细信息页面导出Excel)

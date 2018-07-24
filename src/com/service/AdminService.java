@@ -93,4 +93,13 @@ public interface AdminService
      */
     UserExtend getDetailInfo(String glbm);
 
+    /**
+     * @Description: TODO(删除标记)
+     * @param glbm
+     * @return
+     * @creator Jinhai
+     * @since  v1.0
+     */
+    int deleteUpdate(String glbm);
+
 }

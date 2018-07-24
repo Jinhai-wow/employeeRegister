@@ -191,4 +191,18 @@ public class AdminServiceImpl implements AdminService
     	//return new UserExtend(userMapper.selectByGlbm(glbm),erYgdzMapper.selectByGlbm(glbm));
     }
 
+    /* (非 Javadoc)
+     * 
+     * @param glbm
+     * @return
+     * @see com.service.AdminService#deleteUpdate(java.lang.String)
+     */
+    @Override
+    public int deleteUpdate(String glbm)
+    {
+        ErLogin login = erLoginMapper.selectByPrimaryKey(glbm);
+        login.setStatus(1);
+        return erLoginMapper.updateByPrimaryKey(login);
+    }
+
 }

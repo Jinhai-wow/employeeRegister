@@ -11,6 +11,8 @@ public class ErLogin {
 
     private Integer qxjb;
 
+    private Integer status;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class ErLogin {
 
     public void setQxjb(Integer qxjb) {
         this.qxjb = qxjb;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

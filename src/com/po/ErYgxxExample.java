@@ -165,6 +165,76 @@ public class ErYgxxExample {
             return (Criteria) this;
         }
 
+        public Criteria andGlbmIsNull() {
+            addCriterion("glbm is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmIsNotNull() {
+            addCriterion("glbm is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmEqualTo(String value) {
+            addCriterion("glbm =", value, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmNotEqualTo(String value) {
+            addCriterion("glbm <>", value, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmGreaterThan(String value) {
+            addCriterion("glbm >", value, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmGreaterThanOrEqualTo(String value) {
+            addCriterion("glbm >=", value, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmLessThan(String value) {
+            addCriterion("glbm <", value, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmLessThanOrEqualTo(String value) {
+            addCriterion("glbm <=", value, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmLike(String value) {
+            addCriterion("glbm like", value, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmNotLike(String value) {
+            addCriterion("glbm not like", value, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmIn(List<String> values) {
+            addCriterion("glbm in", values, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmNotIn(List<String> values) {
+            addCriterion("glbm not in", values, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmBetween(String value1, String value2) {
+            addCriterion("glbm between", value1, value2, "glbm");
+            return (Criteria) this;
+        }
+
+        public Criteria andGlbmNotBetween(String value1, String value2) {
+            addCriterion("glbm not between", value1, value2, "glbm");
+            return (Criteria) this;
+        }
+
         public Criteria andYgmcIsNull() {
             addCriterion("ygmc is null");
             return (Criteria) this;
@@ -1715,63 +1785,63 @@ public class ErYgxxExample {
             return (Criteria) this;
         }
 
-        public Criteria andQxjbIsNull() {
-            addCriterion("qxjb is null");
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbIsNotNull() {
-            addCriterion("qxjb is not null");
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbEqualTo(Integer value) {
-            addCriterion("qxjb =", value, "qxjb");
+        public Criteria andStatusEqualTo(Integer value) {
+            addCriterion("status =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbNotEqualTo(Integer value) {
-            addCriterion("qxjb <>", value, "qxjb");
+        public Criteria andStatusNotEqualTo(Integer value) {
+            addCriterion("status <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbGreaterThan(Integer value) {
-            addCriterion("qxjb >", value, "qxjb");
+        public Criteria andStatusGreaterThan(Integer value) {
+            addCriterion("status >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbGreaterThanOrEqualTo(Integer value) {
-            addCriterion("qxjb >=", value, "qxjb");
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("status >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbLessThan(Integer value) {
-            addCriterion("qxjb <", value, "qxjb");
+        public Criteria andStatusLessThan(Integer value) {
+            addCriterion("status <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbLessThanOrEqualTo(Integer value) {
-            addCriterion("qxjb <=", value, "qxjb");
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("status <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbIn(List<Integer> values) {
-            addCriterion("qxjb in", values, "qxjb");
+        public Criteria andStatusIn(List<Integer> values) {
+            addCriterion("status in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbNotIn(List<Integer> values) {
-            addCriterion("qxjb not in", values, "qxjb");
+        public Criteria andStatusNotIn(List<Integer> values) {
+            addCriterion("status not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbBetween(Integer value1, Integer value2) {
-            addCriterion("qxjb between", value1, value2, "qxjb");
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
+            addCriterion("status between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andQxjbNotBetween(Integer value1, Integer value2) {
-            addCriterion("qxjb not between", value1, value2, "qxjb");
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
     }

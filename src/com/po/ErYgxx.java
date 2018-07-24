@@ -53,6 +53,8 @@ public class ErYgxx {
 
     private String grtc;
 
+    private Integer status;
+
     public Integer getId() {
         return id;
     }
@@ -251,5 +253,13 @@ public class ErYgxx {
 
     public void setGrtc(String grtc) {
         this.grtc = grtc == null ? null : grtc.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

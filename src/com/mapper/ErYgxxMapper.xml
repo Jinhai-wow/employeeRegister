@@ -27,6 +27,7 @@
     <result column="rdsj" property="rdsj" jdbcType="TIMESTAMP" />
     <result column="dzzgx" property="dzzgx" jdbcType="VARCHAR" />
     <result column="grtc" property="grtc" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -88,7 +89,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, glbm, ygmc, yggh, xb, jg, mz, zjhm, csrq, hyzk, sfsy, rzbm, rzgw, xz, gzxz, byxx, 
-    zy, bysj, zgxl, xwmc, cjgzsj, zzmm, rdsj, dzzgx, grtc
+    zy, bysj, zgxl, xwmc, cjgzsj, zzmm, rdsj, dzzgx, grtc, status
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.po.ErYgxxExample" >
     select
@@ -136,12 +137,6 @@
     from er_ygxx
     where id = #{id,jdbcType=INTEGER}
   </select>
-   <select id="selectByGlbm" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from er_ygxx
-    where glbm = #{glbm,jdbcType=VARCHAR}
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from er_ygxx
     where id = #{id,jdbcType=INTEGER}
@@ -160,7 +155,7 @@
       gzxz, byxx, zy, bysj, 
       zgxl, xwmc, cjgzsj, 
       zzmm, rdsj, dzzgx, 
-      grtc)
+      grtc, status)
     values (#{id,jdbcType=INTEGER}, #{glbm,jdbcType=VARCHAR}, #{ygmc,jdbcType=VARCHAR}, 
       #{yggh,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{jg,jdbcType=VARCHAR}, #{mz,jdbcType=VARCHAR}, 
       #{zjhm,jdbcType=VARCHAR}, #{csrq,jdbcType=TIMESTAMP}, #{hyzk,jdbcType=INTEGER}, 
@@ -168,7 +163,7 @@
       #{gzxz,jdbcType=VARCHAR}, #{byxx,jdbcType=VARCHAR}, #{zy,jdbcType=VARCHAR}, #{bysj,jdbcType=TIMESTAMP}, 
       #{zgxl,jdbcType=VARCHAR}, #{xwmc,jdbcType=VARCHAR}, #{cjgzsj,jdbcType=TIMESTAMP}, 
       #{zzmm,jdbcType=VARCHAR}, #{rdsj,jdbcType=TIMESTAMP}, #{dzzgx,jdbcType=VARCHAR}, 
-      #{grtc,jdbcType=VARCHAR})
+      #{grtc,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.po.ErYgxx" >
     insert into er_ygxx
@@ -248,6 +243,9 @@
       <if test="grtc != null" >
         grtc,
       </if>
+      <if test="status != null" >
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -324,6 +322,9 @@
       </if>
       <if test="grtc != null" >
         #{grtc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -411,6 +412,9 @@
       <if test="record.grtc != null" >
         grtc = #{record.grtc,jdbcType=VARCHAR},
       </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -442,7 +446,8 @@
       zzmm = #{record.zzmm,jdbcType=VARCHAR},
       rdsj = #{record.rdsj,jdbcType=TIMESTAMP},
       dzzgx = #{record.dzzgx,jdbcType=VARCHAR},
-      grtc = #{record.grtc,jdbcType=VARCHAR}
+      grtc = #{record.grtc,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -522,6 +527,9 @@
       <if test="grtc != null" >
         grtc = #{grtc,jdbcType=VARCHAR},
       </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -550,7 +558,8 @@
       zzmm = #{zzmm,jdbcType=VARCHAR},
       rdsj = #{rdsj,jdbcType=TIMESTAMP},
       dzzgx = #{dzzgx,jdbcType=VARCHAR},
-      grtc = #{grtc,jdbcType=VARCHAR}
+      grtc = #{grtc,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

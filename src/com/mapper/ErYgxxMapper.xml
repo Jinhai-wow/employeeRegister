@@ -104,12 +104,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from er_ygxx
-    where id = #{id,jdbcType=INTEGER}
-  </select>
   
   <!-- 根据部门查找员工信息  -->
   <select id="selectByDepart" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -135,9 +129,7 @@
   <select id="selectByNameAll" resultMap="BaseResultMap">
   	select * from er_ygxx order by ygmc asc
   </select>
-  
-<<<<<<< HEAD
-=======
+ 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -151,7 +143,6 @@
     from er_ygxx
     where glbm = #{glbm,jdbcType=VARCHAR}
   </select>
->>>>>>> branch 'master' of https://github.com/Jinhai-wow/employeeRegister.git
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from er_ygxx
     where id = #{id,jdbcType=INTEGER}
@@ -422,37 +413,6 @@
         grtc = #{record.grtc,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update er_ygxx
-    set id = #{record.id,jdbcType=INTEGER},
-      glbm = #{record.glbm,jdbcType=VARCHAR},
-      ygmc = #{record.ygmc,jdbcType=VARCHAR},
-      yggh = #{record.yggh,jdbcType=VARCHAR},
-      xb = #{record.xb,jdbcType=VARCHAR},
-      jg = #{record.jg,jdbcType=VARCHAR},
-      mz = #{record.mz,jdbcType=VARCHAR},
-      zjhm = #{record.zjhm,jdbcType=VARCHAR},
-      csrq = #{record.csrq,jdbcType=TIMESTAMP},
-      hyzk = #{record.hyzk,jdbcType=INTEGER},
-      sfsy = #{record.sfsy,jdbcType=INTEGER},
-      rzbm = #{record.rzbm,jdbcType=VARCHAR},
-      rzgw = #{record.rzgw,jdbcType=VARCHAR},
-      xz = #{record.xz,jdbcType=VARCHAR},
-      gzxz = #{record.gzxz,jdbcType=VARCHAR},
-      byxx = #{record.byxx,jdbcType=VARCHAR},
-      zy = #{record.zy,jdbcType=VARCHAR},
-      bysj = #{record.bysj,jdbcType=TIMESTAMP},
-      zgxl = #{record.zgxl,jdbcType=VARCHAR},
-      xwmc = #{record.xwmc,jdbcType=VARCHAR},
-      cjgzsj = #{record.cjgzsj,jdbcType=TIMESTAMP},
-      zzmm = #{record.zzmm,jdbcType=VARCHAR},
-      rdsj = #{record.rdsj,jdbcType=TIMESTAMP},
-      dzzgx = #{record.dzzgx,jdbcType=VARCHAR},
-      grtc = #{record.grtc,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

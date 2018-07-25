@@ -155,7 +155,7 @@
 								  <th>操作</th>
 							  </tr>
 						  </thead>   
-						  <tbody>
+						  <tbody id="data">
 							<tr>
 								<td>汪天宇</td>
 								<td class="center">2018</td>
@@ -257,4 +257,54 @@
 		<script src="${pageContext.request.contextPath }/js/custom.min.js"></script>
 	<!-- end: JavaScript-->
 </body>
+<script>
+//查询数据异步刷新
+function selectData(){
+	 var username = document.getElementById("username").value;
+	    var password = document.getElementById("password").value;
+	    if(username=="" || password ==""){
+	        alert("登陆账号和密码不能为空");
+	        return false;
+	    } 
+	//异步登录验证
+	    $.ajax({
+	            url:"/employeeRegister/savedata?type=login&username="+username+"&password="+password,
+	            type:"post",
+	            success: function(response){  
+	        if(Format(response)=="false"){
+	        alert("密码错误请重新输入！");
+	        return false;
+	         } 
+	        else if(Format(response)=="none"){
+	        	  alert("用户不存在！");
+	              return false;
+	        }
+	        else{
+	        	document.forms['form1'].submit();
+
+	        }
+	      }
+	        });
+	}
+	//重置按钮事件
+	function btncz(){
+		var txt0=document.getElementById("txt0").value="";
+		var txt1=document.getElementById("txt1").value="";
+		var txt2=document.getElementById("txt2").value="";
+		document.getElementById("zt").value="";
+		
+	}
+	//每次查询之前清除表格中数据
+	function deleteData(){
+		var tab= document.getElementById("data");
+		var row=tab.rows.length;
+		if(row>1){
+		for(var i=0;i<row;i++){
+			tab.deleteRow(i);
+			row=row-1;
+			i=i-1;
+		}
+		}
+	}
+</script>
 </html>

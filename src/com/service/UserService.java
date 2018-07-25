@@ -96,4 +96,16 @@ public interface UserService {
      * @since  v1.0
      */
     public UserExtend selectUserByGlbm(String glbm);
+    
+        /**  
+        * @Title: updatePwd  
+        * @Description: TODO(用户更新密码)
+        * @creator: liuzheng
+        * @param @param userid
+        * @param @return
+        * @return ErLogin
+        * @throws  
+        */  
+        
+    public int updatePwd(ErLogin erLogin);
 }

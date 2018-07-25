@@ -65,10 +65,11 @@ public class UserController
         {
         	ErLogin erLogin2=userService.checkMsg(username);
         	System.out.println("密码为"+erLogin2.getPassword()+"权限为"+erLogin2.getQxjb());
+        	//判断用户是否存在
+        	if(erLogin2.getStatus()==0){
             //普通员工登录
             if (password.equals(erLogin2.getPassword()))
             {
-          
             session.setAttribute("login", erLogin2);
               if(erLogin2.getQxjb() == 2){
                user=userService.selectMsg(erLogin2.getGlbm());
@@ -93,7 +94,11 @@ public class UserController
             	pw.print("false");
               mv=null;
             }
-
+          }
+        	else{
+        		pw.print("none");
+                mv=null;
+        	}
         }
         return mv;
     }
@@ -131,7 +136,8 @@ public class UserController
         }
     }
     
-        /**  
+        /**
+         * @throws IOException   
         * @Title: updatePwd  
         * @Description: TODO(用户更新密码)
         * @creator: liuzheng
@@ -145,9 +151,27 @@ public class UserController
         */  
         
     @RequestMapping(value = "/updatePwd")
-    public void updatePwd( String username,String password,String password1, HttpSession session,HttpServletResponse resp){
-    	
+    public void updatePwd( String username,String password1, HttpSession session,HttpServletResponse resp) throws IOException{
+    	//设置响应编码
+    	if(username!=""&&password1!=""){
+    		System.out.println(username+"新密码"+password1);
+    	resp.setCharacterEncoding("utf-8");
+    	ErLogin erLogin= new ErLogin();
+    	erLogin.setUserid(username);
+    	erLogin.setPassword(password1);
+    	int i=userService.updatePwd(erLogin);
+    	System.out.println("修改行数"+i);
+    	PrintWriter pw=resp.getWriter();
+    	if(i==1){
+    		pw.println("true");
+    	}
+    	else{
+    		//清除session
+    		session.removeAttribute("user");
+    		pw.println("false");
+    	}
     }
+ }
     
 
 }

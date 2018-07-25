@@ -103,11 +103,11 @@
 					<form class="form-horizontal" >
 						<fieldset>
 							
-							<input class="input-large span12" name="username" id="username_1" type="text" placeholder="请输入原用户名！" />
+							<input class="input-large span12" name="username1" id="username_1" type="text" placeholder="请输入原用户名！" />
 
-							<input class="input-large span12" name="password" id="password_1" type="password" placeholder="请输入原密码！" />
+							<input class="input-large span12" name="password1" id="password_1" type="password" placeholder="请输入原密码！" />
 
-							<input class="input_login  span12" name="password" id="password_2" type="password" placeholder="请输入新密码！" />
+							<input class="input_login  span12" name="password2" id="password_2" type="password" placeholder="请输入新密码！" />
 
 							<!-- <i class="icon-eye-open" id="kj" style="display: none;" onclick="change()"></i>
 							<i class="icon-eye-close" id="bkj" onclick="change()"></i> -->
@@ -115,7 +115,7 @@
 							
 							<div class="clearfix"></div>
 							
-							<button type="submit" class="btn btn-primary span12" >保 存</button>
+							<button type="button" class="btn btn-primary span12" onclick="updatePwd()">保 存</button>
 
 							
 							<button type="button" class="btn btn-primary span12" style="background-color: #17b343;" onclick="xg()">返 回</button>
@@ -130,7 +130,7 @@
 	</div><!--/.fluid-container-->
 
 	<!-- start: JavaScript-->
-		<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/jquery-migrate-1.2.1.min.js"></script>	
 		<script src="js/jquery-ui-1.10.3.custom.min.js"></script>	
 		<script src="js/jquery.ui.touch-punch.js"></script>	
@@ -186,15 +186,41 @@ function formSubmit() {
             type:"post",
             success: function(response){  
         if(Format(response)=="false"){
-        alert("密码错误请重新输入!");
+        alert("密码错误请重新输入！");
         return false;
          } 
+        else if(Format(response)=="none"){
+        	  alert("用户不存在！");
+              return false;
+        }
         else{
         	document.forms['form1'].submit();
 
         }
       }
         });
+}
+//更改密码
+function updatePwd(){
+	var username = document.getElementById("username_1").value;
+    var password = document.getElementById("password_2").value;
+//异步登录验证
+    $.ajax({
+            url:"/employeeRegister/updatePwd?username="+username+"&password1="+password,
+            type:"post",
+            success: function(response){  
+        if(Format(response)=="false"){
+        alert("保存失败，请稍后再试！");
+        return false;
+         } 
+        else{
+        	alert("修改成功请重新登陆！");
+        	xg();
+
+        }
+      }
+        });
+	
 }
 var isShow=true;
 function change(){

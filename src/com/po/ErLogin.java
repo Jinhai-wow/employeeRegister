@@ -4,14 +4,13 @@ public class ErLogin {
     private Integer id;
 
     private String glbm;
-
+    private Integer status;
     private String userid;
 
     private String password;
 
     private Integer qxjb;
-
-    private Integer status;
+	
 
     public Integer getId() {
         return id;
@@ -59,5 +58,6 @@ public class ErLogin {
 
     public void setStatus(Integer status) {
         this.status = status;
+
     }
 }

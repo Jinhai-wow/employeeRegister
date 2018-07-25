@@ -9,7 +9,7 @@
     <result column="qxjb" property="qxjb" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="GlResultMap" type="com.po.UserExtend" >
+   <resultMap id="GlResultMap" type="com.po.UserExtend" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="glbm" property="glbm" jdbcType="VARCHAR" />
     <result column="userid" property="userid" jdbcType="VARCHAR" />
@@ -246,7 +246,7 @@
         status = #{status,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where userid = #{userid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.po.ErLogin" >
     update er_login

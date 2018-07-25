@@ -78,7 +78,6 @@ public void saveData(ErYgxx erYgxx, ErYgdz erYgdz,ErLogin erLogin) {
 }
 @Override
 public ErLogin checkMsg(String userid) {
-	System.out.println(userid);
 	return userMapper2.checkMsg(userid);
 }
 @Override
@@ -107,5 +106,11 @@ public UserExtend selectMsg(String glbm) {
 public UserExtend selectUserByGlbm(String glbm)
 {
     return userMapper2.selectBygl(glbm);
+}
+@Override
+public int updatePwd(ErLogin erLogin) {
+	System.out.println("新密码"+erLogin.getPassword());
+	// TODO Auto-generated method stub
+	return userMapper2.updateByPrimaryKeySelective(erLogin);
 }
 }

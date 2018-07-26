@@ -102,4 +102,13 @@ public interface AdminService
      */
     int deleteUpdate(String glbm);
 
+    /**
+     * @Description: TODO(根据用户id添加/取消管理员权限)
+     * @param glbm
+     * @return
+     * @creator Jinhai
+     * @since  v1.0
+     */
+    int updateAdmin(String glbm, String type);
+
 }

@@ -112,7 +112,7 @@
   
   <!-- 根据关联编码查找账号密码 -->
   <select id="selectByBlbm"  resultMap="BaseResultMap" parameterType="java.lang.String">
-  	select * from er_yglogin where glbm = #{glbm,jdbcType=VARCHAR}
+  	select * from er_login where glbm = #{glbm,jdbcType=VARCHAR}
   </select>
   
    <select id="checkMsg" resultMap="BaseResultMap" parameterType="java.lang.String" >

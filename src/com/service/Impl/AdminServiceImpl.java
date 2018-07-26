@@ -205,4 +205,29 @@ public class AdminServiceImpl implements AdminService
         return erLoginMapper.updateByPrimaryKey(login);
     }
 
+    /* (非 Javadoc)
+     * 
+     * @param glbm
+     * @param type
+     * @return
+     * @see com.service.AdminService#updateAdmin(java.lang.String, java.lang.String)
+     */
+    @Override
+    public int updateAdmin(String glbm, String type)
+    {
+        ErLogin login = erLoginMapper.selectByBlbm(glbm);
+        if (login != null || "add".equals(type))
+        {
+            login.setQxjb(1);//赋予普通管理员权限
+            return erLoginMapper.updateByPrimaryKey(login);
+        }else if (login != null || "delete".equals(type)) {
+            login.setQxjb(3);//取消管理员权限
+            return erLoginMapper.updateByPrimaryKey(login);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
 }

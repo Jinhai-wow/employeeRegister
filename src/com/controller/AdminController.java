@@ -11,9 +11,13 @@
 package com.controller;
 
 
+import java.io.BufferedOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import utils.CreateGlbm;
+import utils.ExportExcel;
 
 import com.po.ErLogin;
 import com.po.ErYgdz;
@@ -82,40 +87,60 @@ public class AdminController
     }
 
     /**
-     * @Description: TODO(添加管理员权限)
-     * @param id
+     * @Description: TODO(添加/取消管理员权限)
+     * @param glbm
+     * @param userid
+     * @param password
+     * @param type 修改权限类型
      * @param session
      * @return
      * @creator Jinhai
-     * @since v1.0
+     * @since  v1.0
      */
-    @RequestMapping(value = "/addAdmin")
+    @RequestMapping(value = "/updateAdmin")
     @ResponseBody
-    public String addAdmin(String glbm, String userid, String password, HttpSession session)
+    public String addAdmin(String glbm, String userid, String password,String type, HttpSession session)
     {
-
-        if (glbm != null || glbm != "" && (userid == null || userid == ""))
+        if ("add".equals(type))//添加管理员
         {
-            // 根据用户id添加管理员权限
-            int result = adminService.addAdmin(glbm);
-            if (result > 0)
+            if (!"".equals(glbm) && "".equals(userid))
             {
-                return "addSuccess";
+                // 根据用户id添加管理员权限
+                int result = adminService.updateAdmin(glbm,type);
+                if (result > 0)
+                {
+                    return "addSuccess";
+                }
+                else
+                {
+                    return "addError";
+                }
+            }
+            else if ("".equals(userid))
+            {
+                // 直接创建管理员账号和密码
+                ErLogin login = new ErLogin();
+                login.setGlbm(CreateGlbm.createGlbm());
+                login.setUserid(userid);
+                login.setPassword(password);
+                login.setQxjb(1);
+                int rs = adminService.addAmin(login);
+                if (rs > 0)
+                {
+                    return "addSuccess";
+                }
+                else
+                {
+                    return "addError";
+                }
             }
             else
             {
-                return "addError";
+                return "error";
             }
-        }
-        else if (userid != null || userid != "")
+        }else if ("delete".equals(type))//删除管理员权限
         {
-            // 直接创建管理员账号和密码
-            ErLogin login = new ErLogin();
-            login.setGlbm(CreateGlbm.createGlbm());
-            login.setUserid(userid);
-            login.setPassword(password);
-            login.setQxjb(2);
-            int rs = adminService.addAmin(login);
+            int rs = adminService.updateAdmin(glbm,type);
             if (rs > 0)
             {
                 return "addSuccess";
@@ -127,7 +152,7 @@ public class AdminController
         }
         else
         {
-            return "nulluser";
+            return "error";
         }
     }
 
@@ -178,7 +203,7 @@ public class AdminController
     @RequestMapping(value="/{glbm}/detail")
     @ResponseBody
     public UserExtend detail(@PathVariable("glbm") String glbm,HttpSession session){
-        if (glbm != null || glbm != "")
+        if ("".equals(glbm))
         {
             return adminService.getDetailInfo(glbm);
         }
@@ -199,7 +224,7 @@ public class AdminController
     @RequestMapping(value="/{glbm}/delete")
     @ResponseBody
     public String delete(@PathVariable("glbm") String glbm,HttpSession session){
-        if (glbm != null || glbm != "")
+        if ("".equals(glbm))
         {
             int rs = adminService.deleteUpdate(glbm);
             if (rs > 0)
@@ -227,10 +252,45 @@ public class AdminController
      */
     @RequestMapping(value = "toExcel")
     @ResponseBody
-    public String toExcel(ErYgxx userVo, HttpSession session)
+    public String toExcel(List<String> glbms, HttpServletResponse response)
     {
+        if (glbms.isEmpty())
+        {
+            response.reset(); // 清除buffer缓存
+            // 指定下载的文件名
+            response.setHeader("Content-Disposition", "attachment;filename=新员工信息" + new Date() + ".xlsx");
+            response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expires", 0);
+            
+            String[] headers = {"候选人姓名", "性别", "应聘岗位", "年龄", "工作年限", "电话", "邮箱", "专业", "专科毕业院校",
+                "本科毕业院校", "硕士毕业院校", "技能（前台，后台）", "其他关键技能", "简历附件"};
+            List<UserExtend> users = new ArrayList<UserExtend>();
+           
+            for (String glbm : glbms)
+            {
+                UserExtend user = adminService.getDetailInfo(glbm);
+                users.add(user);
+            }
+            ExportExcel<UserExtend> ex = new ExportExcel<UserExtend>();
+            OutputStream output;
+            try {
+                output = response.getOutputStream();
+                BufferedOutputStream bufferedOutPut = new BufferedOutputStream(output);
+                bufferedOutPut.flush();
+                ex.exportExcel(headers, users, output);
+                bufferedOutPut.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
 
-        return "";
+        }
+        
+        return "error";
     }
 
     /**
